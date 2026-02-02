@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-tools-demo"
+version = "0.1.0"
+description = "LLM tools orchestration demo"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "openai>=1.40.0",
+  "python-dotenv>=1.0.1",
+]
+
+[project.scripts]
+llm-tools-demo = "demo.cli:main"
+sori = "demo.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
