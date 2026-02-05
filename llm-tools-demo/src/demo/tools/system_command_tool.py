@@ -21,15 +21,12 @@ system_command_tool = {
 
 
 def run_command(command: str) -> dict:
-    parts = shlex.split(command)
-    if not parts:
-        return {"error": "empty command"}
     try:
-        result = subprocess.run(parts, capture_output=True, text=True, check=False)
+        result = subprocess.run(command, capture_output=True, text=True, check=False, shell=True)
     except Exception as exc:
         return {"error": str(exc)}
     return {
-        "args": parts,
+        "args": command,
         "returncode": result.returncode,
         "stdout": result.stdout,
         "stderr": result.stderr,

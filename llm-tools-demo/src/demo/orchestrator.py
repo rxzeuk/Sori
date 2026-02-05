@@ -11,6 +11,7 @@ class Orchestrator:
         max_steps: int = 6,
         stream: bool = True,
         verbose: bool = False,
+        system_prompt: str | None = None,
     ) -> None:
         self.client = OpenAI()
         self.model = model
@@ -20,7 +21,7 @@ class Orchestrator:
         self.stream = stream
         self.verbose = verbose
         self.messages = [
-            {"role": "system", "content": "You are a helpful assistant."}
+            {"role": "system", "content": system_prompt or "You are a helpful assistant."}
         ]
 
     def run_turn(self, user_text: str) -> str:
